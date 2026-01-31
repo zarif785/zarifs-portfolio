@@ -1,0 +1,183 @@
+.cursor-avatar {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cursor-avatar.visible {
+  opacity: 1;
+}
+
+.avatar-container {
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+/* Outer glow ring */
+.avatar-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  opacity: 0.3;
+  animation: pulse-ring 2s ease-in-out infinite;
+}
+
+@keyframes pulse-ring {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.1;
+  }
+}
+
+/* Main avatar face */
+.avatar-face {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 50%;
+  box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Eyes */
+.avatar-eyes {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  margin-bottom: 4px;
+}
+
+.eye {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pupil {
+  width: 4px;
+  height: 4px;
+  background: #0a0a0f;
+  border-radius: 50%;
+  animation: blink 4s infinite;
+}
+
+@keyframes blink {
+  0%, 48%, 52%, 100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.1);
+  }
+}
+
+/* Mouth */
+.avatar-mouth {
+  width: 16px;
+  height: 8px;
+  border: 2px solid white;
+  border-top: none;
+  border-radius: 0 0 16px 16px;
+  margin-top: 2px;
+}
+
+/* Floating particles */
+.avatar-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: var(--accent-cyan);
+  border-radius: 50%;
+  opacity: 0.6;
+  box-shadow: 0 0 10px var(--accent-cyan);
+}
+
+.particle-1 {
+  top: 0;
+  left: 0;
+  animation: float-particle-1 3s ease-in-out infinite;
+}
+
+.particle-2 {
+  top: 0;
+  right: 0;
+  animation: float-particle-2 3.5s ease-in-out infinite;
+}
+
+.particle-3 {
+  bottom: 0;
+  left: 50%;
+  animation: float-particle-3 4s ease-in-out infinite;
+}
+
+@keyframes float-particle-1 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-15px, -15px);
+  }
+}
+
+@keyframes float-particle-2 {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(15px, -15px);
+  }
+}
+
+@keyframes float-particle-3 {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 15px);
+  }
+}
+
+/* Hide on mobile devices */
+@media (max-width: 768px) {
+  .cursor-avatar {
+    display: none;
+  }
+}
+
+/* Add trail effect */
+.avatar-face::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(118, 75, 162, 0.3) 100%);
+  filter: blur(8px);
+  z-index: -1;
+}

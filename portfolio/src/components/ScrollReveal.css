@@ -1,0 +1,29 @@
+.scroll-reveal {
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.scroll-reveal-up {
+  transform: translateY(50px);
+}
+
+.scroll-reveal-down {
+  transform: translateY(-50px);
+}
+
+.scroll-reveal-left {
+  transform: translateX(50px);
+}
+
+.scroll-reveal-right {
+  transform: translateX(-50px);
+}
+
+.scroll-reveal-fade {
+  transform: scale(0.95);
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
